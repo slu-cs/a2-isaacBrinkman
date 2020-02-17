@@ -14,9 +14,5 @@ var file = readFile("voters.csv", parse(err,data){
 
 // Delete any previous data
 mongoose.connection.dropDatabase()
-  .then(() => harcourt.save())
-  .then(() => torrey.save())
-  .then(() => lee.save())
-  .then(() => mongoose.connection.close())
   .then(() => console.log('Database is ready.'))
   .catch(error => console.error(error.stack));
