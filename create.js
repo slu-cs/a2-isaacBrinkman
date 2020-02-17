@@ -7,10 +7,12 @@ const Voter = require('./schema');
 connect(); // To the database
 
 // read the csv file
-var file = readFile("voters.csv", parse(err,data) {
-  if(err) console.error(err.stack);
-  console.log(data);
-})
+var file = readFile("voters.csv")
+  .then(parse(data){
+    console.log(data);
+  })
+  .catch(error => console.error(error.stack));
+
 
 // Delete any previous data
 mongoose.connection.dropDatabase()
