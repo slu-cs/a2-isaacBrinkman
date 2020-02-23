@@ -14,7 +14,7 @@ const file = readline.createInterface({
 });
 
 var allVoters = [];
-const p1 = new Promise(function(resolve, reject){
+var p1 = new Promise(function(resolve, reject){
   // Asynchronous line-by-line input
   file.on('line', function(line) {
     var values= line.split(',');
@@ -33,8 +33,10 @@ const p1 = new Promise(function(resolve, reject){
       zipcode: values[2],
       history: elections
     })
-    allVoters.push(voter)
+    allVoters.push(voter);
+    console.log(allVoters.length);
 })
+console.log(allVoters.length);
 if(allVoters.length > 0){
   resolve('good');
 }
