@@ -36,16 +36,9 @@ mongoose.connection.dropDatabase()
     voter.save();
 
   })
-});
-
-
-// reset the data
-/*
-mongoose.connection.dropDatabase()
-.then(() => voter.save())
-*/
-mongoose.connection.close()
-.then(() => console.log('db is ready'))
+})
+.then(() => mongoose.connection.close())
+.then(() => console.log('db is ready')))
 .catch(error => console.error(error.stack));
 
 // End the program when the file closes
