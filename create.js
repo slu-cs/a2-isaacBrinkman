@@ -43,7 +43,6 @@ file.on('line', function(line){
     .catch(error => console.error(error.stack));
 });
 
-
 // end the program
 file.on('close', function(){
   process.exit(0);
