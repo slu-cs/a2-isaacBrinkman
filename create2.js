@@ -45,16 +45,17 @@ else{
 
 /*  // reset the data
   mongoose.connection.dropDatabase()
-    .then(() => mongoose.connection.close())
     .catch(error => console.error(error.stack));
 })
 */
 p1
+.then(() => mongoose.connection.dropDatabase())
 .then(function(allVoters){
   for (const v of allVoters){
     v.save();
   }
 })
+.then(() => mongoose.connection.close())
 .catch(error => console.error(error.stack));
 
 // End the program when the file closes
