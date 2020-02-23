@@ -35,21 +35,17 @@ const promise1 = new Promise(function(){
     });
     console.log('time to push voters');
     allVoters.push(voter);
-    return allVoters
   })
 });
 
-const promise2 = new Promise(function(allVoters){
-  mongoose.connection.dropDatabase()
-  .then(()=> console.log('insertion'))
-  .then(function(){
-    for(const vote of allVoters){
-      vote.save();
-    }
-  })
+Promise.all([promise1])
+.then(()=>mongoose.connection.dropDatabase())
+.then(()=> console.log('insertion'))
+.then(function(){
+  for(const vote of allVoters){
+    vote.save();
+  }
 })
-
-Promise.all([promise1, promise2])
 .then(() => console.log('Database is ready.'))
 .then(()=>mongoose.connection.close())
 .catch(error => console.error(error.stack));
