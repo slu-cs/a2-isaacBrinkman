@@ -43,7 +43,7 @@ mongoose.connection.dropDatabase()
     v.save();
   }
 })
-.then(() => mongoose.connection.close())
+//.then(() => mongoose.connection.close())
 .then(() => console.log('Database is ready'))
 .catch(error => console.error(error.stack));
 
