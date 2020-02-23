@@ -19,7 +19,6 @@ mongoose.connection.dropDatabase()
 .then(() => {
   file.on('line', function(line) {
     var values= line.split(',');
-
     // put the election history into an array
     var str = values[3];
     var elections = [];
@@ -35,7 +34,7 @@ mongoose.connection.dropDatabase()
       history: elections
     });
     voter.save();
-    console.log("saved");
+    console.log(voter);
 
   })
 })
