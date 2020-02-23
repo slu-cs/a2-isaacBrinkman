@@ -31,6 +31,7 @@ file.on('line', function(line) {
     zip: values[2],
     elections: elects
   });
+  console.log(voter);
 
   // reset the data
   mongoose.connection.dropDatabase()
