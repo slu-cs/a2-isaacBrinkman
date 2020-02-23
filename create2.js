@@ -19,7 +19,6 @@ var p1 = new Promise(function(resolve, reject){
   // Asynchronous line-by-line input
   file.on('line', function(line) {
     var values= line.split(',');
-
     // put the election history into an array
     var str = values[3];
     var elections = [];
@@ -36,22 +35,14 @@ var p1 = new Promise(function(resolve, reject){
     })
     allVoters.push(voter);
     //console.log(allVoters.length);
-})
-.then(function(){
-  console.log("final " + allVoters.length);
-  if(allVoters.length > 0){
-    resolve('good');
-  }
-  else{
-    reject("bad");
-  }
   })
+  console.log(allVoters.length);
 });
 
 
 /*  // reset the data
-  mongoose.connection.dropDatabase()
-    .catch(error => console.error(error.stack));
+mongoose.connection.dropDatabase()
+.catch(error => console.error(error.stack));
 })
 */
 p1.then(function(result) {
@@ -62,9 +53,9 @@ p1.then(function(result) {
 /*
 .then(() => mongoose.connection.dropDatabase())
 .then(function(allVoters){
-  for (const v of allVoters){
-    v.save();
-  }
+for (const v of allVoters){
+v.save();
+}
 })
 .then(() => console.log('Db is ready'))
 .then(() => mongoose.connection.close())
