@@ -23,6 +23,7 @@ const lee = new Professor({
 var allVoters = [];
 // Asynchronous line-by-line input
 mongoose.connection.dropDatabase()
+/*
 .then(() => {
   file.on('line', function(line) {
     var values= line.split(',');
@@ -44,11 +45,13 @@ mongoose.connection.dropDatabase()
     allVoters.push(voter);
   })
 })
+*/
 .then(() => {
   for(const v of allVoters){
     v.save();
   }
 })
+.then(() => lee.save())
 .then(() => console.log('Database is ready'))
 .catch(error => console.error(error.stack));
 
