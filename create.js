@@ -35,7 +35,6 @@ mongoose.connection.dropDatabase()
     });
     voter.save();
     allVoters.push(voter);
-    console.log(voter);
   })
 })
 .then(() => mongoose.connection.close())
