@@ -16,9 +16,6 @@ const file = readline.createInterface({
 });
 //asynch line-by-line input
 file.on('line', function(line){
-  .then(function(line){
-
-  })
   var valArr = line.split(",");
   // need to split voting history
   var str = valArr[3];
