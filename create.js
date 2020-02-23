@@ -42,8 +42,7 @@ mongoose.connection.dropDatabase()
     v.save();
   }
 })
-.then(() => mongoose.connection.close())
-.then(() => console.log('Lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll'))
+.then(() => console.log('Database is ready'))
 .catch(error => console.error(error.stack));
 
 // End the program when the file closes
