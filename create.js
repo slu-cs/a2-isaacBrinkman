@@ -32,9 +32,6 @@ file.on('line', function(line){
     elections: elects
   });
   allVoters.push(voter);
-})
-.then(function(){
-  // Delete any previous data
   mongoose.connection.dropDatabase()
     .then(function(voters){
       for(const vote of voters){
