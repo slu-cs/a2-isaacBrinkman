@@ -51,6 +51,6 @@ mongoose.connection.dropDatabase()
 .catch(error => console.error(error.stack));
 
 // End the program when the file closes
-file.on('close', function() {
-  process.exit(0);
-});
+// file.on('close', function() {
+//   process.exit(0);
+// });
