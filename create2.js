@@ -36,7 +36,7 @@ const p1 = new Promise(function(resolve, reject){
     allVoters.push(voter)
 })
 if(allVoters.length > 0){
-  resolve(allVoters);
+  resolve('good');
 }
 else{
   reject("bad");
