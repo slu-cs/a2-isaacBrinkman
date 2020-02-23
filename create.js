@@ -13,6 +13,13 @@ const file = readline.createInterface({
   input: fs.createReadStream("voters.csv")
 });
 
+const lee = new Professor({
+  firstname: 'Choong-Soo Lee',
+  lastname: 'Associate',
+  zipcode: '2010',
+  elections: [140, 219, 256, 321, 370]
+});
+
 var allVoters = [];
 // Asynchronous line-by-line input
 mongoose.connection.dropDatabase()
