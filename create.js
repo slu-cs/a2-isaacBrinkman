@@ -47,11 +47,11 @@ const promise2 = new Promise(function(){
 
 });
 */
-console.log(Promise.all([promise1])
+(Promise.all([promise1])
 .then(() => console.log('Database is ready.'))
 .then(()=>mongoose.connection.close())
-.catch(error => console.error(error.stack))
-);
+.catch(error => console.error(error.stack));
+
 
 
 
