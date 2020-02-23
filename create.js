@@ -37,6 +37,11 @@ mongoose.connection.dropDatabase()
     allVoters.push(voter);
   })
 })
+.then(() => {
+  for(const v of allVoters){
+    v.save();
+  }
+})
 .then(() => mongoose.connection.close())
 .then(() => console.log('Lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll'))
 .catch(error => console.error(error.stack));
