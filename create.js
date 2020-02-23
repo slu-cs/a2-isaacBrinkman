@@ -39,7 +39,7 @@ const promise1 = new Promise(function(){
 });
 
 const promise2 = new Promise(function(){
-  mongoose.connection.dropDatabase())
+  mongoose.connection.dropDatabase()
   console.log('insertion')
   for(const vote of allVoters){
       vote.save();
