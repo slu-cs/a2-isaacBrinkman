@@ -19,7 +19,7 @@ var allVoters = [];
 // Asynchronous line-by-line input
 // for some reason this is running but not completeing
 mongoose.connection.dropDatabase()
-.then(() => {
+.then(()=>{
   file.on('line', function(line) {
     var values= line.split(',');
     // put the election history into an array
@@ -36,16 +36,17 @@ mongoose.connection.dropDatabase()
       zipcode: values[2],
       history: elections
     });
-    allVoters.push(voter);
+    voter.push();
   });
 })
 .then(() => console.log(allVoters.length))
-.then(function(){
-  for(const v of allVoters){
-    v.save();
-  }
-  return
-})
+// .then(function(){
+//   for(const v of allVoters){
+//     v.save();
+//   }
+//   return
+// })
+.then(() => mongoose.connection.close())
 .then(() => console.log('Database is ready'))
 .catch(error => console.error(error.stack));
 
