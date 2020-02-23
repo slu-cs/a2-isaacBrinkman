@@ -15,16 +15,14 @@ const file = readline.createInterface({
 
 
 var allVoters = [];
-
-// Asynchronous line-by-line input
-// for some reason this is running but not completeing
-// drop the database
-// then read the files
+// read the file line by line
 file.on('line', function(line) {
+  // split by ,
   var values= line.split(',');
   // put the election history into an array
   var str = values[3];
   var elections = [];
+  // this is to get the elections
   if(str !== undefined){ // if they ever voted
     for (var i = 0; i < str.length; i=i+4) {
       elections.push(str.substring(i, i+4));
@@ -36,23 +34,23 @@ file.on('line', function(line) {
     zipcode: values[2],
     history: elections
   });
+  // push the voter to an empty array
   allVoters.push(voter);
 });
 
 
 
-// End the program when the file closes
+// Once the file is done do all the mongo stuff
 file.on('close', function() {
+  // drop the db
   mongoose.connection.dropDatabase()
-  // this should be a big number BUT ITS 0
-  .then(() => console.log(allVoters.length))
-  // then save all the values
+  // using Promise and map save voters
   .then(() => Promise.all(allVoters.map(voter => voter.save())))
   // close the connection
   .then(() => mongoose.connection.close())
   // print it's ready
-  // THIS IS PRINTING BEFORE THE FILE READER IS DONE
   .then(() => console.log('Database is ready'))
+  // then exit
   .then(() => process.exit(0))
   .catch(error => console.error(error.stack))
 });
