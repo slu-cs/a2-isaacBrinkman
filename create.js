@@ -35,14 +35,15 @@ const promise1 = new Promise(function(){
     });
     console.log('time to push voters');
     allVoters.push(voter);
+    return allVoters
   })
 });
 
-const promise2 = new Promise(function(){
+const promise2 = new Promise(function(allVoters){
   mongoose.connection.dropDatabase()
   .then(()=> console.log('insertion'))
-  .then(function(voters){
-    for(const vote of voters){
+  .then(function(){
+    for(const vote of allVoters){
       vote.save();
     }
   })
