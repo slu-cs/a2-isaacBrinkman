@@ -8,60 +8,39 @@ const fs = require('fs');
 
 connect(); // To the database
 
-
-var allVoters =[];
-// file config
+// File configuration
 const file = readline.createInterface({
   input: fs.createReadStream("voters.csv")
 });
 
-const promise1 = new Promise(function(){
-  //asynch line-by-line input
-  file.on('line', function(line){
-    var valArr = line.split(",");
-    // need to split voting history
-    var str = valArr[3];
-    var elects = [];
-    if(str !== undefined){
-      for (var i =0; i< str.length; i+=4){
-        elects.push(str.substring(i,i+4));
-      }
+// Asynchronous line-by-line input
+file.on('line', function(line) {
+  var values= line.split(',');
+
+  // put the election history into an array
+  var str = values[3];
+  var elections = [];
+  if(str !== undefined){ // if they ever voted
+    for (var i = 0; i < str.length; i=i+4) {
+      elections.push(str.substring(i, i+4));
     }
-    const voter = new Voter({
-      first_name: valArr[0],
-      last_name: valArr[1],
-      zip: valArr[2],
-      elections: elects
-    });
-    allVoters.push(voter);
-  })
+  }
+  const voter = new Voter({
+    firstname: values[0],
+    lastname: values[1],
+    zipcode: values[2],
+    history: elections
+  });
+
+  // reset the data
+  mongoose.connection.dropDatabase()
+    .then(() => voter.save())
+    .then(() => mongoose.connection.close())
+    .then(() => console.log('Database is ready.'))
+    .catch(error => console.error(error.stack));
 });
 
-/*
-const promise2 = new Promise(function(){
-
-});
-*/
-promise1
-.then(() => mongoose.connection.dropDatabase())
-.then(() => console.log('insertion'))
-.then(() => console.log(allVoters.length))
-.then(function(){
-  for(const vote of allVoters){
-  vote.save();
-  console.log("saving");
-}
-})
-.then(() => console.log('Database is ready.'))
-.then(() => mongoose.connection.close())
-.catch(error => console.error(error.stack));
-
-
-
-
-
-
-// end the program
-file.on('close', function(){
+// End the program when the file closes
+file.on('close', function() {
   process.exit(0);
 });
