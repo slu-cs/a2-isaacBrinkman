@@ -17,29 +17,31 @@ const file = readline.createInterface({
 var allVoters = [];
 
 // Asynchronous line-by-line input
-file.on('line', function(line) {
-  var values= line.split(',');
-  // put the election history into an array
-  var str = values[3];
-  var elections = [];
-  if(str !== undefined){ // if they ever voted
-    for (var i = 0; i < str.length; i=i+4) {
-      elections.push(str.substring(i, i+4));
-    }
-  }
-  const voter = new Voter({
-    firstname: values[0],
-    lastname: values[1],
-    zipcode: values[2],
-    history: elections
-  });
-  allVoters.push(voter);
-  if(values[2] > 13617){
-    console.log("greater")
-  }
-});
-
+// for some reason this is running but not completeing
 mongoose.connection.dropDatabase()
+.then(() => {
+  file.on('line', function(line) {
+    var values= line.split(',');
+    // put the election history into an array
+    var str = values[3];
+    var elections = [];
+    if(str !== undefined){ // if they ever voted
+      for (var i = 0; i < str.length; i=i+4) {
+        elections.push(str.substring(i, i+4));
+      }
+    }
+    const voter = new Voter({
+      firstname: values[0],
+      lastname: values[1],
+      zipcode: values[2],
+      history: elections
+    });
+    allVoters.push(voter);
+    if(values[2] > 13617){
+      console.log("greater")
+    }
+  });
+})
 .then(() => console.log(allVoters.length))
 .then(function(){
   for(const v of allVoters){
