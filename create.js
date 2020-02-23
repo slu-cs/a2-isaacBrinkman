@@ -35,11 +35,7 @@ const promise1 = new Promise(function(resolve, reject){
     });
     allVoters.push(voter);
   })
-  mongoose.connection.dropDatabase()
-  console.log('insertion')
-  for(const vote of allVoters){
-      vote.save();
-    }
+
 });
 
 /*
@@ -48,6 +44,13 @@ const promise2 = new Promise(function(){
 });
 */
 promise1
+.then(()=>mongoose.connection.dropDatabase())
+.then(()=>console.log('insertion'))
+.then(function(){
+  for(const vote of allVoters){
+    vote.save();
+  }
+}
 .then(() => console.log('Database is ready.'))
 .then(()=>mongoose.connection.close())
 .catch(error => console.error(error.stack));
