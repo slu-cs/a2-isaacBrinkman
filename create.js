@@ -34,6 +34,7 @@ mongoose.connection.dropDatabase()
       history: elections
     });
     voter.save();
+    console.log("saved");
 
   })
 })
