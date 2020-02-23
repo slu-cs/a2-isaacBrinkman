@@ -32,17 +32,20 @@ file.on('line', function(line){
     elections: elects
   });
   allVoters.push(voter);
-});
-// Delete any previous data
-mongoose.connection.dropDatabase()
-  .then(function(voters){
-    for(const vote of voters){
-      vote.save()
+})
+.then(function(){
+  // Delete any previous data
+  mongoose.connection.dropDatabase()
+    .then(function(voters){
+      for(const vote of voters){
+        vote.save()
+      }
     }
-  }
-  .then(() => console.log('Database is ready.'))
-  .then(()=>mongoose.connection.close())
-  .catch(error => console.error(error.stack));
+    .then(() => console.log('Database is ready.'))
+    .then(()=>mongoose.connection.close())
+    .catch(error => console.error(error.stack));
+});
+
 
 // end the program
 file.on('close', function(){
