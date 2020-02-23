@@ -45,6 +45,7 @@ mongoose.connection.dropDatabase()
   for(const v of allVoters){
     v.save();
   }
+  return
 })
 .then(() => console.log('Database is ready'))
 .catch(error => console.error(error.stack));
