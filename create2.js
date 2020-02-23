@@ -36,7 +36,7 @@ var p1 = new Promise(function(resolve, reject){
     allVoters.push(voter);
     console.log(allVoters.length);
 })
-console.log(allVoters.length);
+console.log("final" + allVoters.length);
 if(allVoters.length > 0){
   resolve('good');
 }
