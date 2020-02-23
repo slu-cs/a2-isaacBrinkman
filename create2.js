@@ -34,6 +34,7 @@ var p1 = new Promise(function(resolve, reject){
       history: elections
     })
     allVoters.push(voter);
+    return allVoters;
     //console.log(allVoters.length);
 })
 console.log("final" + allVoters.length);
