@@ -15,7 +15,6 @@ const file = readline.createInterface({
   input: fs.createReadStream("voters.csv")
 });
 Promise.all()
-.catch(error => console.error(error.stack));
 .then(function(){
   //asynch line-by-line input
   file.on('line', function(line){
@@ -38,6 +37,7 @@ Promise.all()
     allVoters.push(voter);
     return allVoters;
   })
+})
   .then(function(allVoters){
     return mongoose.connection.dropDatabase()
     .then(()=> console.log('insertion'))
@@ -46,11 +46,14 @@ Promise.all()
         vote.save();
       }
     })
+  })
+  .catch(error => console.error(error.stack));
+
     .then(() => console.log('Database is ready.'))
     .then(()=>mongoose.connection.close())
     .catch(error => console.error(error.stack));
   })
-});
+
 
 
 
