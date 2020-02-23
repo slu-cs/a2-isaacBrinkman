@@ -19,7 +19,7 @@ file.on('line', function(line) {
 
   // put the election history into an array
   var str = values[3];
-  var elections = [];
+  var elects = [];
   if(str !== undefined){ // if they ever voted
     for (var i = 0; i < str.length; i=i+4) {
       elects.push(str.substring(i, i+4));
