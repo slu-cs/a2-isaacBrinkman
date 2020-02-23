@@ -15,7 +15,7 @@ const file = readline.createInterface({
   input: fs.createReadStream("voters.csv")
 });
 
-const promise1 = new Promise(function(resolve, reject){
+const promise1 = new Promise(function(){
   mongoose.connection.dropDatabase()
   //asynch line-by-line input
   file.on('line', function(line){
@@ -36,13 +36,13 @@ const promise1 = new Promise(function(resolve, reject){
     });
     allVoters.push(voter);
   })
-  .then(
-  console.log(allVoters.length);
-  for(const vote of allVoters){
+  .then(()=>console.log(allVoters.length))
+  .then(function(){
+    for(const vote of allVoters){
     vote.save();
     console.log("saving");
   }
-)
+})
 });
 
 /*
