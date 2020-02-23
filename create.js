@@ -28,11 +28,7 @@ file.on('line', function(line) {
   const voter = new Voter({
     firstname: values[0],
     lastname: values[1],
-<<<<<<< HEAD
     zip: values[2],
-=======
-    zipcode: values[2],
->>>>>>> ed6c1469a59d421d785b43069e6fe3756b79cb9e
     history: elections
   });
 
