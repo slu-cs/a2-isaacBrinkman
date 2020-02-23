@@ -45,8 +45,8 @@ file.on('line', function(line){
       .then(() => console.log('Database is ready.'))
       .then(()=>mongoose.connection.close())
       .catch(error => console.error(error.stack));
-    })
-});
+    });
+
 
 
 // end the program
