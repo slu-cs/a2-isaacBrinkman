@@ -38,21 +38,19 @@ Promise.all()
     return allVoters;
   })
 })
-  .then(function(allVoters){
-    return mongoose.connection.dropDatabase()
-    .then(()=> console.log('insertion'))
-    .then(function(voters){
-      for(const vote of voters){
-        vote.save();
-      }
-    })
+.then(function(allVoters){
+  return mongoose.connection.dropDatabase()
+  .then(()=> console.log('insertion'))
+  .then(function(voters){
+    for(const vote of voters){
+      vote.save();
+    }
   })
-  .catch(error => console.error(error.stack));
-
-    .then(() => console.log('Database is ready.'))
-    .then(()=>mongoose.connection.close())
-    .catch(error => console.error(error.stack));
-  })
+})
+.then(() => console.log('Database is ready.'))
+.then(()=>mongoose.connection.close())
+.catch(error => console.error(error.stack));
+})
 
 
 
