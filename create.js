@@ -20,24 +20,24 @@ var allVoters = [];
 // for some reason this is running but not completeing
 // drop the database
 // then read the files
-  file.on('line', function(line) {
-    var values= line.split(',');
-    // put the election history into an array
-    var str = values[3];
-    var elections = [];
-    if(str !== undefined){ // if they ever voted
-      for (var i = 0; i < str.length; i=i+4) {
-        elections.push(str.substring(i, i+4));
-      }
+file.on('line', function(line) {
+  var values= line.split(',');
+  // put the election history into an array
+  var str = values[3];
+  var elections = [];
+  if(str !== undefined){ // if they ever voted
+    for (var i = 0; i < str.length; i=i+4) {
+      elections.push(str.substring(i, i+4));
     }
-    const voter = new Voter({
-      firstname: values[0],
-      lastname: values[1],
-      zipcode: values[2],
-      history: elections
-    });
-    allVoters.push(voter);
+  }
+  const voter = new Voter({
+    firstname: values[0],
+    lastname: values[1],
+    zipcode: values[2],
+    history: elections
   });
+  allVoters.push(voter);
+});
 
 
 
@@ -53,6 +53,6 @@ file.on('close', function() {
   // print it's ready
   // THIS IS PRINTING BEFORE THE FILE READER IS DONE
   .then(() => console.log('Database is ready'))
-  .catch(error => console.error(error.stack));
-  process.exit(0);
+  .then(() => process.exit(0))
+  .catch(error => console.error(error.stack))
 });
