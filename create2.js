@@ -15,6 +15,7 @@ const file = readline.createInterface({
 
 var allVoters = [];
 var p1 = new Promise(function(resolve, reject){
+  // THis section works
   // Asynchronous line-by-line input
   file.on('line', function(line) {
     var values= line.split(',');
@@ -34,17 +35,19 @@ var p1 = new Promise(function(resolve, reject){
       history: elections
     })
     allVoters.push(voter);
-    return allVoters;
     //console.log(allVoters.length);
 })
-console.log("final" + allVoters.length);
-if(allVoters.length > 0){
-  resolve('good');
-}
-else{
-  reject("bad");
-}
+.then(function(){
+  console.log("final " + allVoters.length);
+  if(allVoters.length > 0){
+    resolve('good');
+  }
+  else{
+    reject("bad");
+  }
+  })
 });
+
 
 /*  // reset the data
   mongoose.connection.dropDatabase()
