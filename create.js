@@ -14,35 +14,39 @@ const file = readline.createInterface({
 });
 
 // Asynchronous line-by-line input
-file.on('line', function(line) {
-  var values= line.split(',');
+mongoose.connection.dropDatabase()
+.then(() => {
+  file.on('line', function(line) {
+    var values= line.split(',');
 
-  // put the election history into an array
-  var str = values[3];
-  var elections = [];
-  if(str !== undefined){ // if they ever voted
-    for (var i = 0; i < str.length; i=i+4) {
-      elections.push(str.substring(i, i+4));
+    // put the election history into an array
+    var str = values[3];
+    var elections = [];
+    if(str !== undefined){ // if they ever voted
+      for (var i = 0; i < str.length; i=i+4) {
+        elections.push(str.substring(i, i+4));
+      }
     }
-  }
-  const voter = new Voter({
-    firstname: values[0],
-    lastname: values[1],
-    zipcode: values[2],
-    history: elections
-  });
-  voter.save();
+    const voter = new Voter({
+      firstname: values[0],
+      lastname: values[1],
+      zipcode: values[2],
+      history: elections
+    });
+    voter.save();
 
+  })
 });
+
 
 // reset the data
 /*
 mongoose.connection.dropDatabase()
-  .then(() => voter.save())
-  */
+.then(() => voter.save())
+*/
 mongoose.connection.close()
-  .then(() => console.log('db is ready'))
-  .catch(error => console.error(error.stack));
+.then(() => console.log('db is ready'))
+.catch(error => console.error(error.stack));
 
 // End the program when the file closes
 file.on('close', function() {
