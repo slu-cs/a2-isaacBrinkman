@@ -55,6 +55,7 @@ p1
     v.save();
   }
 })
+.then(() => console.log('Db is ready'))
 .then(() => mongoose.connection.close())
 .catch(error => console.error(error.stack));
 
