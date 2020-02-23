@@ -32,13 +32,15 @@ file.on('line', function(line) {
     history: elections
   });
 
-  // reset the data
-  mongoose.connection.dropDatabase()
-    .then(() => voter.save())
-    .then(() => mongoose.connection.close())
-    .then(() => console.log('db is ready'))
-    .catch(error => console.error(error.stack));
-})
+
+});
+
+// reset the data
+mongoose.connection.dropDatabase()
+  .then(() => voter.save())
+  .then(() => mongoose.connection.close())
+  .then(() => console.log('db is ready'))
+  .catch(error => console.error(error.stack));
 
 // End the program when the file closes
 file.on('close', function() {
