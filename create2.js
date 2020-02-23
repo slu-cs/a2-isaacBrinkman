@@ -50,7 +50,12 @@ else{
     .catch(error => console.error(error.stack));
 })
 */
-p1
+p1.then(function(result) {
+  console.log(result); // "Stuff worked!"
+}, function(err) {
+  console.log(err); // Error: "It broke"
+});
+/*
 .then(() => mongoose.connection.dropDatabase())
 .then(function(allVoters){
   for (const v of allVoters){
@@ -60,7 +65,7 @@ p1
 .then(() => console.log('Db is ready'))
 .then(() => mongoose.connection.close())
 .catch(error => console.error(error.stack));
-
+*/
 // End the program when the file closes
 file.on('close', function() {
   process.exit(0);
