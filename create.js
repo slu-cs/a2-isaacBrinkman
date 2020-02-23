@@ -38,14 +38,15 @@ const promise1 = new Promise(function(){
   })
 });
 
-Promise.all([promise1])
-.then(()=>mongoose.connection.dropDatabase())
-.then(()=> console.log('insertion'))
-.then(function(){
+const promise2 = new Promise(function(){
+  mongoose.connection.dropDatabase())
+  console.log('insertion')
   for(const vote of allVoters){
-    vote.save();
-  }
-})
+      vote.save();
+    }
+});
+
+Promise.all([promise1, promise2])
 .then(() => console.log('Database is ready.'))
 .then(()=>mongoose.connection.close())
 .catch(error => console.error(error.stack));
