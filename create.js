@@ -35,7 +35,6 @@ const promise1 = new Promise(function(resolve, reject){
       elections: elects
     });
     allVoters.push(voter);
-    console.log("here");
   })
   for(const vote of allVoters){
     vote.save();
