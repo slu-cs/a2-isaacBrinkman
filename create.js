@@ -13,7 +13,7 @@ const file = readline.createInterface({
   input: fs.createReadStream("voters.csv")
 });
 
-const lee = new Professor({
+const lee = new Voter({
   firstname: 'Choong-Soo Lee',
   lastname: 'Associate',
   zipcode: '2010',
