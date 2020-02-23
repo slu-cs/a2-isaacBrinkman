@@ -8,13 +8,13 @@ connect(); // To the database
 
 const queries = [
   // number of voters in canton
-  Voter.find().where('zip').equals(13617)
+  Voter.find()
 
 ];
 
 // Run the queries in parallel
 Promise.all(queries)
   .then(function(results) {
-    console.log('Number of voters in Canton', results[0].length);
+    console.log('Number of voters in Canton', results);
     mongoose.connection.close();
   }).catch(error => console.error(error.stack));
