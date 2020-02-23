@@ -8,7 +8,7 @@ connect(); // To the database
 
 const queries = [
   // number of voters in canton
-  Voter.find().where('zip').equals(13617),
+  Voter.find().where('zip').equals(13617)
 
 ];
 
