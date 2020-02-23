@@ -50,7 +50,7 @@ Promise.all()
 .then(() => console.log('Database is ready.'))
 .then(()=>mongoose.connection.close())
 .catch(error => console.error(error.stack));
-})
+
 
 
 
