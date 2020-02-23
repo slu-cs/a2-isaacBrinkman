@@ -38,7 +38,7 @@ file.on('line', function(line) {
 
 mongoose.connection.dropDatabase()
 .then(() => console.log(allVoters.length))
-.then(() => {
+.then(function(){
   for(const v of allVoters){
     v.save();
   }
