@@ -47,7 +47,7 @@ file.on('close', function() {
   // this should be a big number BUT ITS 0
   .then(() => console.log(allVoters.length))
   // then save all the values
-  .then(() => Promise.all(voter_data.map(voter => voter.save())))
+  .then(() => Promise.all(allVoters.map(voter => voter.save())))
   // close the connection
   .then(() => mongoose.connection.close())
   // print it's ready
