@@ -15,7 +15,7 @@ const file = readline.createInterface({
   input: fs.createReadStream("voters.csv")
 });
 
-const promise1 = new Promise(function(){
+const promise1 = new Promise(function(resolve, reject){
   //asynch line-by-line input
   file.on('line', function(line){
     var valArr = line.split(",");
@@ -47,7 +47,7 @@ const promise2 = new Promise(function(){
 
 });
 */
-Promise.all([promise1]).prototype
+promise1
 .then(() => console.log('Database is ready.'))
 .then(()=>mongoose.connection.close())
 .catch(error => console.error(error.stack));
