@@ -31,8 +31,10 @@ file.on('line', function(line){
     zip: valArr[2],
     elections: elects
   });
+  console.log('time to push voters')
   allVoters.push(voter);
   mongoose.connection.dropDatabase()
+    .then(()=> console.log('insertion'))
     .then(function(voters){
       for(const vote of voters){
         vote.save()
