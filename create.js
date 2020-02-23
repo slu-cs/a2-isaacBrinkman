@@ -32,15 +32,16 @@ Promise.all().then(function(){
       zip: valArr[2],
       elections: elects
     });
-    console.log('time to push voters')
-    return allVoters.push(voter)
+    console.log('time to push voters');
+    allVoters.push(voter);
+    return allVoters;
   })
-  .then(function(){
+  .then(function(allVoters){
     return mongoose.connection.dropDatabase()
     .then(()=> console.log('insertion'))
     .then(function(voters){
       for(const vote of voters){
-        vote.save()
+        vote.save();
       }
     })
     .then(() => console.log('Database is ready.'))
