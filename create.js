@@ -37,9 +37,6 @@ mongoose.connection.dropDatabase()
       history: elections
     });
     allVoters.push(voter);
-    if(values[2] > 13617){
-      console.log("greater")
-    }
   });
 })
 .then(() => console.log(allVoters.length))
