@@ -15,25 +15,27 @@ const file = readline.createInterface({
   input: fs.createReadStream("voters.csv")
 });
 //asynch line-by-line input
-file.on('line')
+file.on('line', function(line){
   .then(function(line){
-    var valArr = line.split(",");
-    // need to split voting history
-    var str = valArr[3];
-    var elects = [];
-    if(str !== undefined){
-      for (var i =0; i< str.length; i+=4){
-        elects.push(str.substring(i,i+4));
-      }
-    }
-    const voter = new Voter({
-      first_name: valArr[0],
-      last_name: valArr[1],
-      zip: valArr[2],
-      elections: elects
-    });
-    allVoters.push(voter);
+
   })
+  var valArr = line.split(",");
+  // need to split voting history
+  var str = valArr[3];
+  var elects = [];
+  if(str !== undefined){
+    for (var i =0; i< str.length; i+=4){
+      elects.push(str.substring(i,i+4));
+    }
+  }
+  const voter = new Voter({
+    first_name: valArr[0],
+    last_name: valArr[1],
+    zip: valArr[2],
+    elections: elects
+  });
+  allVoters.push(voter);
+})
 .then(function(){
   // Delete any previous data
   mongoose.connection.dropDatabase()
