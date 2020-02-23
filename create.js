@@ -35,9 +35,6 @@ const promise1 = new Promise(function(){
     });
     allVoters.push(voter);
   })
-});
-
-const promise2 = new Promise(function(){
   mongoose.connection.dropDatabase()
   console.log('insertion')
   for(const vote of allVoters){
@@ -45,7 +42,12 @@ const promise2 = new Promise(function(){
     }
 });
 
-console.log(Promise.all([promise1, promise2])
+/*
+const promise2 = new Promise(function(){
+
+});
+*/
+console.log(Promise.all([promise1])
 .then(() => console.log('Database is ready.'))
 .then(()=>mongoose.connection.close())
 .catch(error => console.error(error.stack))
