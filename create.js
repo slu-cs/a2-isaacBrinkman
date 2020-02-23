@@ -34,7 +34,7 @@ const promise1 = new Promise(function(resolve, reject){
       elections: elects
     });
     allVoters.push(voter);
-    resolve(allVoters);
+    console.log("here");
   })
 
 });
