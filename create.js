@@ -33,7 +33,6 @@ const promise1 = new Promise(function(){
       zip: valArr[2],
       elections: elects
     });
-    console.log('time to push voters');
     allVoters.push(voter);
   })
 });
