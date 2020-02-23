@@ -16,7 +16,6 @@ const file = readline.createInterface({
 });
 
 const promise1 = new Promise(function(){
-  mongoose.connection.dropDatabase()
   //asynch line-by-line input
   file.on('line', function(line){
     var valArr = line.split(",");
@@ -36,13 +35,6 @@ const promise1 = new Promise(function(){
     });
     allVoters.push(voter);
   })
-  .then(()=>console.log(allVoters.length))
-  .then(function(){
-    for(const vote of allVoters){
-    vote.save();
-    console.log("saving");
-  }
-})
 });
 
 /*
@@ -53,8 +45,12 @@ const promise2 = new Promise(function(){
 promise1
 .then(() => mongoose.connection.dropDatabase())
 .then(() => console.log('insertion'))
+.then(() => console.log(allVoters.length))
 .then(function(){
-
+  for(const vote of allVoters){
+  vote.save();
+  console.log("saving");
+}
 })
 .then(() => console.log('Database is ready.'))
 .then(() => mongoose.connection.close())
