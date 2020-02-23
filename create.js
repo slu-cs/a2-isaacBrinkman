@@ -40,7 +40,7 @@ file.on('line', function(line){
       for(const vote of voters){
         vote.save()
       }
-    }
+    })
     .then(() => console.log('Database is ready.'))
     .then(()=>mongoose.connection.close())
     .catch(error => console.error(error.stack));
