@@ -22,14 +22,14 @@ file.on('line', function(line) {
   var elections = [];
   if(str !== undefined){ // if they ever voted
     for (var i = 0; i < str.length; i=i+4) {
-      elections.push(str.substring(i, i+4));
+      elects.push(str.substring(i, i+4));
     }
   }
   const voter = new Voter({
-    firstname: values[0],
-    lastname: values[1],
+    first_name: values[0],
+    last_name: values[1],
     zip: values[2],
-    history: elections
+    elections: elects
   });
 
   // reset the data
