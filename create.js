@@ -16,7 +16,6 @@ const file = readline.createInterface({
 });
 Promise.all()
 .catch(error => console.error(error.stack));
-
 .then(function(){
   //asynch line-by-line input
   file.on('line', function(line){
