@@ -13,9 +13,9 @@ const file = readline.createInterface({
   input: fs.createReadStream("voters.csv")
 });
 
+var allVoters = [];
 // Asynchronous line-by-line input
 mongoose.connection.dropDatabase()
-.then(() => console.log("startiong"))
 .then(() => {
   file.on('line', function(line) {
     var values= line.split(',');
@@ -34,12 +34,12 @@ mongoose.connection.dropDatabase()
       history: elections
     });
     voter.save();
+    allVoters.push(voter);
     console.log(voter);
-
   })
 })
 .then(() => mongoose.connection.close())
-.then(() => console.log('db is ready'))
+.then(() => console.log('Lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll'))
 .catch(error => console.error(error.stack));
 
 // End the program when the file closes
