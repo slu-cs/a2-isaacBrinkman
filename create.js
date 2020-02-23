@@ -15,6 +15,8 @@ const file = readline.createInterface({
   input: fs.createReadStream("voters.csv")
 });
 Promise.all()
+.catch(error => console.error(error.stack));
+
 .then(function(){
   //asynch line-by-line input
   file.on('line', function(line){
@@ -49,7 +51,6 @@ Promise.all()
     .then(()=>mongoose.connection.close())
     .catch(error => console.error(error.stack));
   })
-  .catch(error => console.error(error.stack));
 });
 
 
