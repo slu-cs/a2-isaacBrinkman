@@ -16,7 +16,7 @@ const file = readline.createInterface({
 });
 
 const promise1 = new Promise(function(resolve, reject){
-  mongoose.connection.dropDatabase
+  mongoose.connection.dropDatabase()
   //asynch line-by-line input
   file.on('line', function(line){
     var valArr = line.split(",");
