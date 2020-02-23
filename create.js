@@ -34,6 +34,7 @@ const promise1 = new Promise(function(resolve, reject){
       elections: elects
     });
     allVoters.push(voter);
+    resolve(allVoters);
   })
 
 });
@@ -44,15 +45,15 @@ const promise2 = new Promise(function(){
 });
 */
 promise1
-.then(()=>mongoose.connection.dropDatabase())
-.then(()=>console.log('insertion'))
+.then(() => mongoose.connection.dropDatabase())
+.then(() => console.log('insertion'))
 .then(function(){
   for(const vote of allVoters){
     vote.save();
   }
 })
 .then(() => console.log('Database is ready.'))
-.then(()=>mongoose.connection.close())
+.then(() => mongoose.connection.close())
 .catch(error => console.error(error.stack));
 
 
