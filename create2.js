@@ -33,7 +33,7 @@ var p1 = new Promise(function(resolve, reject){
       zipcode: values[2],
       history: elections
     })
-    allVoters.push(voter);
+    console.log(allVoters.push(voter));
     //console.log(allVoters.length);
   })
   console.log(allVoters.length);
