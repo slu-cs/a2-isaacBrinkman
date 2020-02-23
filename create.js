@@ -18,7 +18,9 @@ var allVoters = [];
 
 // Asynchronous line-by-line input
 // for some reason this is running but not completeing
+// drop the database
 mongoose.connection.dropDatabase()
+// then read the files
 .then(()=>{
   file.on('line', function(line) {
     var values= line.split(',');
@@ -36,21 +38,25 @@ mongoose.connection.dropDatabase()
       zipcode: values[2],
       history: elections
     });
-    voter.save();
+    allVoters.push(voter);
   });
 })
+// this should be a big number BUT ITS 0
 .then(() => console.log(allVoters.length))
-// .then(function(){
-//   for(const v of allVoters){
-//     v.save();
-//   }
-//   return
-// })
+// then save all the values
+.then(function(){
+  for(const v of allVoters){
+    v.save();
+  }
+})
+// close the connection
 .then(() => mongoose.connection.close())
+// print it's ready
+// THIS IS PRINTING BEFORE THE FILE READER IS DONE
 .then(() => console.log('Database is ready'))
 .catch(error => console.error(error.stack));
 
 // End the program when the file closes
-// file.on('close', function() {
-//   process.exit(0);
-// });
+file.on('close', function() {
+  process.exit(0);
+});
