@@ -15,8 +15,7 @@ const file = readline.createInterface({
   input: fs.createReadStream("voters.csv")
 });
 //asynch line-by-line input
-console.log("starting")
-  .then(function(){
+console.log("starting",function(){
     file.on('line', function(line){
       var valArr = line.split(",");
       // need to split voting history
