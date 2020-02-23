@@ -31,14 +31,16 @@ file.on('line', function(line) {
     zipcode: values[2],
     history: elections
   });
-
+  voter.save();
 
 });
 
 // reset the data
+/*
 mongoose.connection.dropDatabase()
   .then(() => voter.save())
-  .then(() => mongoose.connection.close())
+  */
+mongoose.connection.close())
   .then(() => console.log('db is ready'))
   .catch(error => console.error(error.stack));
 
