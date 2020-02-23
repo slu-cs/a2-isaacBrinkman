@@ -14,8 +14,8 @@ var allVoters =[];
 const file = readline.createInterface({
   input: fs.createReadStream("voters.csv")
 });
-Promise.all()
-.then(function(){
+
+const promise1 = new Promise(function(){
   //asynch line-by-line input
   file.on('line', function(line){
     var valArr = line.split(",");
@@ -35,11 +35,11 @@ Promise.all()
     });
     console.log('time to push voters');
     allVoters.push(voter);
-    return allVoters;
   })
-})
-.then(function(allVoters){
-  return mongoose.connection.dropDatabase()
+});
+
+const promise2 = new Promise(function(){
+  mongoose.connection.dropDatabase()
   .then(()=> console.log('insertion'))
   .then(function(voters){
     for(const vote of voters){
@@ -47,6 +47,8 @@ Promise.all()
     }
   })
 })
+
+Promise.all([promise1, promise2])
 .then(() => console.log('Database is ready.'))
 .then(()=>mongoose.connection.close())
 .catch(error => console.error(error.stack));
