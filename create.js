@@ -36,11 +36,13 @@ const promise1 = new Promise(function(resolve, reject){
     });
     allVoters.push(voter);
   })
+  .then(
   console.log(allVoters.length);
   for(const vote of allVoters){
     vote.save();
     console.log("saving");
   }
+)
 });
 
 /*
