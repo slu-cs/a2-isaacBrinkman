@@ -13,8 +13,8 @@ const file = readline.createInterface({
   input: fs.createReadStream("voters.csv")
 });
 
-var allVoters = [];
 var p1 = new Promise(function(resolve, reject){
+  var allVoters = [];
   // THis section works
   // Asynchronous line-by-line input
   file.on('line', function(line) {
