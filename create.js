@@ -15,6 +15,7 @@ const file = readline.createInterface({
 
 // Asynchronous line-by-line input
 mongoose.connection.dropDatabase()
+.then(() => console.log("startiong"))
 .then(() => {
   file.on('line', function(line) {
     var values= line.split(',');
