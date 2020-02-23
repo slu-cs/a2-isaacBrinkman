@@ -36,7 +36,7 @@ mongoose.connection.dropDatabase()
       zipcode: values[2],
       history: elections
     });
-    voter.push();
+    voter.save();
   });
 })
 .then(() => console.log(allVoters.length))
