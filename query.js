@@ -22,9 +22,10 @@ const queries = [
 Promise.all(queries)
   .then(function(results) {
     console.log('Number of registered voters in Canton: ', results[0].length);
-    console.log('Full names of those whose first-name is STARR: ', results[1].map(p => (p.firstname +" " + p.lastname)).toString());
+    console.log('Full names of registered voters whose first-name is STARR: ', results[1].map(p => (p.firstname +" " + p.lastname)).toString());
     console.log('Number of people who voted in 2016 general election: ', results[2].length);
     console.log('The last name alphabetically: ', results[3].map(p => p.lastname).toString());
     console.log('Number of zipcodes in the county: ', results[4].length);
     mongoose.connection.close();
-  }).catch(error => console.error(error.stack));
+  })
+  .catch(error => console.error(error.stack));
